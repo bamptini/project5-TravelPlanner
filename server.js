@@ -45,9 +45,9 @@ function getData (request, response){
 //
 //--------POST ROUTE-------------------------
 
-app.post('/all', callBack); //URL needs to be defined #IMPORTANT URL CHANGE
+app.post('/all', postData); //URL needs to be defined #IMPORTANT URL CHANGE
 
-function callBack (request, response) {
+function postData (request, response) {
 
     let data = request.body;
 

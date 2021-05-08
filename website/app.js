@@ -100,7 +100,7 @@ const getData = async (url='') =>{
         try{
             const projectData = await entries.json();
             document.getElementById('date').innerHTML = `Date: ${projectData.dttm}`;
-            document.getElementById('temp').innerHTML = `The temperature is currently: ${projectData.temp} in ${projectData.location}`;
+            document.getElementById('temp').innerHTML = `The temperature is currently: ${projectData.temp} in ${projectData.city}`;
             document.getElementById('content').innerHTML = `I am feeling: ${projectData.feeling}`;
         }
         catch(err){
