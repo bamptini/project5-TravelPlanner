@@ -1,0 +1,27 @@
+{
+  "name": "project3",
+  "version": "1.0.0",
+  "description": "Weather-app for project 3",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "curl": "^0.1.4",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bamptini/project3.git"
+  },
+  "author": "James Bampton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bamptini/project3/issues"
+  },
+  "homepage": "https://github.com/bamptini/project3#readme"
+}
