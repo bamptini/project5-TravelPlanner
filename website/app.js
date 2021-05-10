@@ -1,26 +1,24 @@
 /* Global Variables */
 
-const baseUrl =  'http://api.openweathermap.org/data/2.5/weather?q=';
-const units = '&units=metric'; // convert f degree to C degree, append to end of key
+const baseUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';
+const units = '&units=metric'; // For converting f degree to C degree. Must append to end of key
 const apiKey = '&appid=1e32a5f263864d02667d1379ca8e179a';
 
 // Create a new date instance dynamically with JS
-let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let date = new Date();
+let newDate = date.getDate()+'.'+ date.getMonth()+'.'+ date.getFullYear();
 console.log('New date is '+ newDate);
-
-// variable to represent the City entered into UI
-const newCity = document.getElementById('city').value;
-console.log('New city is '+ newCity)  
 
 document.getElementById('generate').addEventListener('click', performAction);
 
-//
 function performAction(e){
   console.log('1')
 
-    // Get the value input into element to include in the POST
+    // Get input data from form data to include in the POST
     const feeling = document.getElementById('feelings').value; 
+    const newCity = document.getElementById('city').value;
+    console.log('New city is '+ newCity)  
+
     
     // Call API to get weather data for city - based on user input into element.
     newInput(baseUrl,newCity,apiKey,units)
@@ -70,7 +68,6 @@ const postData = async ( baseUrl = '', data = {})=>{
       body: JSON.stringify(data), 
     });
     //console.log(response);
-
       try {
         const newData = await response.json();
         return newData;
@@ -79,22 +76,8 @@ const postData = async ( baseUrl = '', data = {})=>{
       }
   }
 
-  /* Function to GET Project Data 
-const getData = async (url='') =>{
-    console.log('Some URL ' +url);
-    const request = await fetch(url);
-    try {
-        const getData = await request.json()
-    }
-    catch(error){
-        console.log('Error', error);
-    }
-};*/
-
   //CODE TO UPDATE UI
-
-  const postUpdates = async()=>{
-    
+  const postUpdates = async()=>{  
         const entries = await fetch('/all');//baseUrl+city+apiKey+'/getData');
         console.log('8')
         try{
@@ -105,5 +88,4 @@ const getData = async (url='') =>{
         }
         catch(err){
             console.log('Error posting data ' + err);
-
         }}

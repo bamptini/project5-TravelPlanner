@@ -1,4 +1,5 @@
 
+// Testing a delay, without using async but setTimeout funciton
 function kickoff(sec){
 console.log("Hello, i'm first");
 setTimeout(() => {
@@ -11,7 +12,9 @@ console.log("I'm next because there is a delay")
 
 kickoff(2000);
 
+///////////////////////////////////////////////////////////////////
 
+// BEGIN TESTING FOR WEATHER JOURNAL
 var express = require('express');
 var app = express();
 
@@ -20,17 +23,16 @@ app.get('/index.html', function (req, res) {
   res.send('hello world');
 })
 
-
+// Tesinng baseURL works, with city predefined as a variable.
 let baseUrl =  'http://api.openweathermap.org/data/2.5/weather?q=';
 let units = '&units=metric'; // convert f degree to C degree, append to end of key
 let apiKey = '1e32a5f263864d02667d1379ca8e179a';
 
 //document.getElementById('generate').addEventListener('click', performAction);
-
 //
 function performAction(e){
     
-    const newCity =  'London'//document.getElementById('city').value;
+    const newCity =  'London'//Using predefined city variable
     newInput(baseUrl,newCity, apiKey)
     
     }
@@ -50,15 +52,12 @@ function performAction(e){
 
     performAction();
 
-
 // TEST CODE SAMPLE -=============================================================================
 // Setup empty JS object to act as endpoint for all routes
 projectData = {};
 
 // Require Express to run server and routes
 const express = require('express');
-
-
 
 // Start up an instance of app
 const app = express();
@@ -74,7 +73,6 @@ function listening(){
 
 /* Middleware*/
 
-
 const bodyParser = require('body-parser');
 
 //Here we are configuring express to use body-parser as middle-ware.
@@ -87,13 +85,9 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('website'));
 
-
-
-
 // GET and POST routes
 
 projectData = {};
-
 
 app.get('/all', getData);
 
@@ -101,11 +95,6 @@ function getData (req, res) {
     console.log(projectData);
     res.send(projectData);
 }
-
-
-
-
-
 
 //post function
 
@@ -116,10 +105,6 @@ function addData(request, response) {
 let data = request.body;
 
 console.log('server side data ', data);
-
-//date
-//temp -> temperature
-// feelings -> user's input
 
 projectData["temp"] = data.temp;
 projectData["date"] = data.date;
