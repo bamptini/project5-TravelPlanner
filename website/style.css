@@ -7,7 +7,7 @@ body{
     display: grid;
     grid-auto-rows: minmax(150px, auto);
     /* grid-template-columns:  */
-    height:95vh;
+    height:100vh;
     background: #000000;
     color: #ffffff;
     justify-content: center;
@@ -18,7 +18,6 @@ body{
 }
 
 .holder{
-
     font-size: 40px;
 }
 
@@ -34,14 +33,12 @@ body{
 #date{
     color: rgb(120, 184, 100);
     font-size: 25px;
-
 }
 
 #temp{
 
     color:orange;
     font-size: 25px;
-
 }
 
 #content{
@@ -95,6 +92,7 @@ textarea{
     color: #000;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
+    
 }
 /* Reset style for HTML element on active to have no border*/
 input:focus,
