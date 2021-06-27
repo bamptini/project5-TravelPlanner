@@ -1,33 +1,45 @@
-// Setup empty JS object to act as endpoint for all routes
-journalData = {};
+/* The code is executed using npm run build - This starts server and sets up all required routes*/
+// Create endpoint object to hold data from POST requests
+endPoint = {};
 
-// Express to run server and routes
-const express = require('express');
+// CREATE VARIABLE FOR HIDING API KEY
+const dotenv = require('dotenv');
+dotenv.config();
 
-// Start up an instance of app
+// API REFERENCES
+const baseUrl = 'https://api.meaningcloud.com/sentiment-2.1?key=';
+const apiKey = process.env.API_KEY;
+const language = '&lang=en&url='
+
+//console.log(`Your API key is ${process.env.API_KEY}`);
+
+// START EXPRESS
+const express = require('express')
+
+// START APP
 const app = express();
+
+// DEPENDENCIES
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-/* Middleware*/
-//Here we are configuring express to use body-parser as middle-ware.
+// OTHER DEPENDENCIES
+const path = require('path')
 const bodyParser = require('body-parser');
 
-// Cors for cross origin allowance
+// CORS FOR CROSS ORIGIN ALLOWANCE
 const cors = require('cors');
 app.use(cors());
 
-// Initialize the main project folder
-app.use(express.static('website'));
+// SETUP DEPLOYMENT FOLDER 
+app.use(express.static('dist'))
+console.log(__dirname);
 
-// Setup Server
-const port = 3002;
-const server = app.listen(port, listening);
+// ASSIGN PORT
+app.listen(8082, function () {
+    console.log('Example app listening on production port 8082!')
+});
 
-function listening(){
-    console.log ("Server Running");
-    console.log (`running on localhost: ${port}`);
-}
 
 //-------------- ROUTES ------------------//
 
@@ -57,7 +69,3 @@ response.send(journalData);
 };
 
 //-------END POST ROUTE---------------------
-
-
-
-

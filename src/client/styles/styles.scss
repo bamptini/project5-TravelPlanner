@@ -1,0 +1,176 @@
+/* This is my grid setup */
+.container{
+    display:grid;
+    grid-template-columns:33vw 33vw 33vw;
+    grid-template-rows: 100px 600px 100px;
+    width: 90vw;
+    grid-gap: 15px;
+    margin:auto;
+    grid-template-areas: 
+    "head"
+    "cont"
+    "foot";
+    border: 9px solid rgb(42, 102, 170);
+    justify-content: center;
+}
+
+.content-nested-grid{
+    display:grid;
+    width: 85vw;
+    height: 80vh;
+    grid-template-columns: 25vw 25vw 25vw;
+    grid-template-rows:50%;
+    grid-gap: 10px;
+    grid-template-areas:
+    "content1" "content2" "content3";
+    border: 5px solid rgb(189, 41, 115);
+    justify-content: center;
+}
+  
+.footer-nested-grid{
+    width: 80vw;
+    grid-template-columns: 33vw 33vw 33vw;
+    grid-template-rows: 10%;
+    grid-gap: 10px;
+    grid-template-areas:
+    "contactOne" "contactTwo" "contactThree";
+    border: 2px solid rgb(74, 62, 143);
+    justify-content: center;
+}
+  
+.flex-box{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid red;
+    background: #Fff;
+}
+
+.content-inner-flex-box{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(79, 129, 170);
+    background: #fff;
+    height: 70vh;
+}
+
+.footer-inner-flex-box{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(79, 129, 170);
+    background: #fff;
+}
+
+
+.header{
+      /* row start/column start/ row end/ column end */
+    grid-area: head;
+    font-family: Helvetica, sans-serif;
+}
+
+.content{
+    grid-area: cont;
+    font-family: Helvetica, sans-serif;
+}
+
+.footer{
+    grid-area: foot;
+    font-family: Helvetica, sans-serif;
+}
+
+.contact1{
+	grid-area: contactOne;
+    width: 33vw;
+    height: 50px;
+}
+
+.contact2{
+	grid-area: contactTwo;
+    width: 33vw;
+    height: 50px;
+}
+
+.contact3{
+	grid-area: contactThree;
+    width: 33vw;
+    height: 50px;
+}
+
+.content-one{
+	grid-area: content1;
+    width: 33vw;
+    height: 50vh;
+}
+
+.content-two{
+	grid-area: content2;
+    width: 33vw;
+    height: 50vh;
+}
+
+.content-three{
+	grid-area: content3;
+    width: 33vw;
+    height: 50vh;
+}
+
+.content .card {
+	position: relative;
+	width: 380px;
+    font-family: Helvetica, sans-serif;
+	margin: 0 auto;
+	background: #333;
+	box-sizing: border-box;
+	text-align: center;
+	border: 1px;
+	border-radius: 10px;
+	background: #fff;
+	box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
+}
+
+.content .layer {
+	position: absolute;
+	/*top: calc(10% -60px);*/
+	left: 10px;
+    right: 10px;
+    top: 10px;
+	width: 360px;
+	height: 100%;
+	background: linear-gradient(#edf1f3, #838e91);
+	z-index: 1;
+	opacity: 0.8;
+	/*transition: 0.5s;*/
+}
+
+  /* If Screen Is Wide Enough */
+  @media(min-width:900px){
+.container{
+    display:grid;
+    grid-template-columns: 90vw;
+    grid-template-rows: 100px 600px 100px;
+    width: 90vw;
+    grid-gap: 15px;
+    /* grid-template-columns: repeat(3, 1fr); */
+    /* Initially each element has its own row for small screens */
+    grid-template-areas: 
+        "head"
+        "cont"
+        "foot";
+        border: 2px solid rgb(47, 223, 61);
+                        }
+}
+
+.w3-circle{
+    width:130px;
+    height:130px;
+    border-radius: 90px;
+    padding: auto;
+    position: sticky;
+    z-index: 2;
+    border: 2px solid;
+    border-color: grey;
+}
+

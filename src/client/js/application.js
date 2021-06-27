@@ -1,5 +1,7 @@
 /* Global Variables */
 
+//export {main}
+
 const baseUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';
 const units = '&units=metric'; // For converting f degree to C degree. Must append to end of key
 const apiKey = '&appid=1e32a5f263864d02667d1379ca8e179a';
@@ -10,6 +12,11 @@ let newDate = date.getDate()+'.'+ date.getMonth()+'.'+ date.getFullYear();
 console.log('New date is '+ newDate);
 
 document.getElementById('generate').addEventListener('click', performAction);
+
+
+//Main function for project
+//function main();
+
 
 function performAction(e){
   console.log('1')
