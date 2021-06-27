@@ -1,4 +1,4 @@
-# Weather-Journal App Project
+# Travel Planner App Project 5 
 
 ## Overview
 Project requires creation of an asynchronous web app.
@@ -19,7 +19,7 @@ Expected results: Date, Temperature and the Feeling message.
 
 example:
 
-Date: 4.9.2021
+Date: 27.06.2021
 The temperature is currently: 18.38c in London
 I am feeling: Cold
 
