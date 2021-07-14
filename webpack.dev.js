@@ -1,8 +1,9 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebPackPlugin = require("html-webpack-plugin")
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: './src/client/index.js',
@@ -29,7 +30,7 @@ module.exports = {
             },
 
             {
-                test: /\.(png|PNG)$/,
+                test: /\.(png|PNG|jpg|JPG|gif|GIF)$/,
                 use:[{
                     loader:'url-loader',
                     options: {
@@ -54,5 +55,6 @@ module.exports = {
             protectWebpackAssets: false
         }),
         new MiniCssExtractPlugin(),
+        new dotenv(),
     ]
 }

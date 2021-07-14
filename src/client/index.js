@@ -1,28 +1,23 @@
-
-import { main } from './js/application'
+import './styles/all-styles.scss'
+import logo from './media/blue-globe.jpg'
+import "./js/application"
+import { performAction } from './js/application'
 //import { handleSubmit } from './js/formHandler'
-//import { postData } from './js/postData'
-//import { postUpdates } from './js/app'
+import { postData } from './js/postData'
 
-// Import scss files to main
-//import './js/app'
-//import './js/postData'
-import './styles/another.scss'
-import './styles/blogs.scss'
-import './styles/footer.scss'
-import './styles/navbar.scss'
-import './styles/requests.scss'
-import './styles/styles.scss'
-import './styles/cardsnew.scss'
-import img from './media/avatar3.png'
+
+document.getElementById('logo2').src = logo
+//Images defined to use inside cards but not currenlty being used.
+//document.getElementById('card1logo').src = img
+//document.getElementById('card2logo').src = img
+
+// Add event listener for submit button
+document.getElementById("getButton").addEventListener('click', performAction);
+
+console.log('Just added event listener to submit button')
+
+//import { performAction } from './js/application'
 
 export{
-    main,
+   performAction, postData
 }
-
-document.getElementById('logo').src = img
-
-// Add event listener for add trip button
-document.getElementById("btn").addEventListener("addTrip", fun);
-function addTrip() {
-document.getElementById("para").innerHTML = "Hello World" + "<br>" + "Welcome to the  javaTpoint.com"};

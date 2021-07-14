@@ -1,32 +1,17 @@
-
-// Testing a delay, without using async but setTimeout funciton
-function kickoff(sec){
-console.log("Hello, i'm first");
-setTimeout(() => {
-
-    console.log("Sorry for the delay, what's " + sec / 1000 + " seconds between friends")
-}, sec)
-
-console.log("I'm next because there is a delay")
-}
-
-kickoff(2000);
-
 ///////////////////////////////////////////////////////////////////
 
-// BEGIN TESTING FOR WEATHER JOURNAL
+// BEGIN TESTING 
 var express = require('express');
 var app = express();
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/index.html', function (req, res) {
-  res.send('hello world');
+  res.send('Hello tester ');
 })
 
 // Tesinng baseURL works, with city predefined as a variable.
 let baseUrl =  'http://api.openweathermap.org/data/2.5/weather?q=';
-let units = '&units=metric'; // convert f degree to C degree, append to end of key
-let apiKey = '1e32a5f263864d02667d1379ca8e179a';
+
 
 //document.getElementById('generate').addEventListener('click', performAction);
 //

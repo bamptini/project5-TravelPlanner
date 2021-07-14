@@ -1,44 +1,32 @@
 /* Global Variables */
 
-//export {main}
+const baseUrl = 'http://api.geonames.org/searchJSON?q=';
+const city = '';
+const userName = '&username=bamptini';
 
-const baseUrl = 'http://api.openweathermap.org/data/2.5/weather?q=';
-const units = '&units=metric'; // For converting f degree to C degree. Must append to end of key
-const apiKey = '&appid=1e32a5f263864d02667d1379ca8e179a';
-
-// Create a new date instance dynamically with JS
-let date = new Date();
-let newDate = date.getDate()+'.'+ date.getMonth()+'.'+ date.getFullYear();
-console.log('New date is '+ newDate);
-
-document.getElementById('generate').addEventListener('click', performAction);
-
-
-//Main function for project
-//function main();
+//document.getElementById('getButton').addEventListener('click', performAction);
 
 
 function performAction(e){
-  console.log('1')
+  console.log('1 - Perform Action function')
 
     // Get input data from form data to include in the POST
-    const feeling = document.getElementById('feelings').value; 
-    const newCity = document.getElementById('city').value;
-    console.log('New city is '+ newCity)  
+    const city = document.getElementById('city').value;
+    console.log('Place is '+ city)  
 
-    
-    // Call API to get weather data for city - based on user input into element.
-    newInput(baseUrl,newCity,apiKey,units)
+    // Call API to get geonames details for specific place - based on user input into element.
+    newInput(baseUrl,city,userName)
         
     .then(function(data){
       console.log('4')
+    
     // Add all data into POST request    
         postData('/all', {
 
-                temp:data.main.temp, 
-                dttm:newDate,
-                location:newCity,
-                feeling:feeling});
+                city:data.city,
+                longitude:data.lng,
+                latitude:data.lat,
+                country:data.countryName});
                 console.log('6')
             
     }) .then( () =>{
@@ -48,10 +36,10 @@ function performAction(e){
     };
 
 //GET data from WEB API using ASYNC
-    const newInput = async (baseURL, city, apiKey, units)=>{
+    const newInput = async (baseURL, city, userName)=>{
       console.log('2')  
-      console.log('New Input', {baseURL, city, apiKey, units})
-      const response = await fetch(baseURL+city+apiKey+units) // await until all data is received from API call, then try
+      console.log('New Input', {baseURL, city, userName})
+      const response = await fetch(baseURL+city+userName) // await until all data is received from API call, then try
       try { // If fetch goes well    
         const data = await response.json(); // Return data as JSON
         console.log('3')
@@ -85,13 +73,13 @@ const postData = async ( baseUrl = '', data = {})=>{
 
   //CODE TO UPDATE UI
   const postUpdates = async()=>{  
-        const entries = await fetch('/all');//baseUrl+city+apiKey+'/getData');
+        const entries = await fetch('/all');
         console.log('8')
         try{
             const projectData = await entries.json();
-            document.getElementById('date').innerHTML = `Date: ${projectData.dttm}`;
-            document.getElementById('temp').innerHTML = `The temperature is currently: ${projectData.temp}c in ${projectData.city}`;
-            document.getElementById('content').innerHTML = `I am feeling: ${projectData.feeling}`;
+            document.getElementById('counrty').innerHTML = `Country: ${projectData.country}`;
+            document.getElementById('long').innerHTML = `Longitude: ${projectData.longitude}`;
+            document.getElementById('lat').innerHTML = `Latitude: ${projectData.latitude}`;
         }
         catch(err){
             console.log('Error posting data ' + err);

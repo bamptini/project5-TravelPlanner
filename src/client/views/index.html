@@ -1,157 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Project 5 Travel Planner</title>
-    <meta
-      content="width=device-width, initial-scale=1, maximum-scale=1"
-      name="viewport">
 
-    <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"-->    
-    
-    <!--link rel="stylesheet" href="../styles/another.css"-->
-    <!--link rel="stylesheet" href="css/navbar.css"-->
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <title>Project 5 Travel Planner</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 
-  <body>
-    <div class="title">
-        <br>
-    <p>TRAVEL PLANNER</p>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+  <!--link rel="stylesheet" href="../styles/another.scss"-->
+  <!--link rel="stylesheet" href="css/navbar.css"-->
+
+</head>
+
+<body>
+  <div class="title">
     <br>
-    </div>
+    <p>TRAVEL PLANNER</p><br>
+    <img id='logo2' class="w3-circle" alt="Avatar">
+    <br>
+  </div>
 
-  <div class="grid-container">
+  <div class="">
     <header class="header">
-        <div id="nestedHeaderGrid" class="header-box">     
-                <div class="nav-bar topnav">
-                    <a class="nav-link" href="#about">About</a>
-                    <a class="nav-link" href="#trip">Trip Planner</a>
-                    <a class="nav-link" href="#contact">Contact</a>  
-                </div>
-
-                <div id="about" class="intro toptext">
-                    <p><q>Want to know what the weather is expected to be like for your trip ?</q>.</p>
-                </div>
-                
-                    <div class ="addTripButton">
-                          <button id="addTrip" type = "submit"> Add Trip </button>
-                    </div>
+      <div id="nestedHeaderGrid" class="header-box">
+        <div class="nav-bar topnav">
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#trip">Trip Planner</a>
+          <a class="nav-link" href="#contact">Contact</a>
         </div>
-    </header>
-    <br>
-  <main class="content nested-box">
 
-    <!--Add Trip>
-
-	  <div id="trip" class="">
-      <div class="row">
-        <div class="col">
-        <p class="detailfont-small-blue">Request a PDF copy of my book</p>
+        <div id="about" class="intro toptext">
+          <p><q>Want to know what the weather is expected to be like for your trip ?</q></p>
         </div>
       </div>
-      
-      <table id="questionaire" class="container-fluid box2-padding"><tbody>
-      <form class="form-group">
-      <tr><td width="0%">
-      <span style="font-size: 18px !important; color: #FFB000;">EMAIL &nbsp</td><td>
-      <input type="text" maxlength="50" size="50" name="email" id="email_input"></td>
-      <td colspan="6">
-      <input type="button" class="btn btn-success btn-sm" name="Button" onClick="handleSendingEmail()" value="Request Book">
-      </form></td><td></td>
-      <td>&nbsp;</td></tr></table>
-        
-    </div>
-      
-  </div>
-      <br>
-      
-      <div id = "app">
-        <div class ="holder headline">Weather Journal App
-        <div class ="holder city">
-          <label for="city">Enter city here</label>
-          <input type="text" id="city" required placeholder="enter city here">
-        </div>
-        
-        <div class ="tripButton">
-          <button id="addTrip" type = "submit"> Add Trip </button>
-        <div>
-      
-      
-          <br>
-        <div class ="holder entry">
-          <div class = "title">Most Recent Entry
-            <div id = "entryHolder">
-            <div id = "date"></div> 
-            <div id = "temp"></div>
-            <div id = "content"></div>
-          </div>
-        </div>
-      </div></div-->
-      
-
-        <div id="nestedGrid" class="nested-box">
-                <div class="card">
-                     <!--CARD 1-->
-                    <div class="card1">
-                        <!-- div class="cardimg"-->
-                        <p><a href="life.html">
-                            <figure>
-                            <img id='logo'class="w3-circle" alt="Avatar"></a>
-                        <figcaption class="figcap-font">this is me</figcaption>    
-                        </figure>
-                        </p>
-                        <div class="card-details">
-                            <h2>Life</h2><span><h2><i>All about me</i></h2></span>
-                        </div>
-                    </div>
-                </div>
-                    
-                 <div class="card">
-                     <!--CARD 2-->
-                    <div class="card2">
-                        <!-- div class="cardimg"-->
-                        <p><a href="car.html">
-                            <figure>
-                            <img id='logo' class="w3-circle"alt="Avatar"></a>
-                            <figcaption class="figcap-font">nice car</figcaption>    
-                        </figure>
-                        </p>
-                        <div class="card-details">
-                            <h2>Car</h2><span><h2><i>Mini Adventures</i></h2></span>
-                        </div>
-                     </div
-                  ></div>
-          </div>
-
-        <div class ="clearTripButton">
-          <button id="clearTrip" type = "submit"> Clear Trip </button>
-        <div>
-    </main><br><br>
     
+    </header>
+    
+    <main class="content nested-box-inner">
+      <div id="nestedGrid" class="nested-box-inner">
+        
+        <div class="card">
+          <!--CARD left-->          
+            <div class="card-left inner cardInnerLeft">
+            <div><h2>Enter details</h2></div>
+              <p>
+            <figure>
+              <!--img id='card1logo' class="w3-circle2" alt="Avatar"></a-->
+              <figcaption class="figcap-font"></figcaption>
+            </figure></p>
+
+            <div class="form-style-3">
+              <form>
+              <fieldset><legend>Your Trip</legend>
+              <label for="field1"><span>City <span class="required">*</span></span><input type="text" id='city' class="input-field" name="field1" value="London" /></label>
+              <label for="field2"><span>Date <span class="required">*</span></span><input type="date" id='date' class="input-field" name="field2" value="" /></label>
+              </fieldset>
+              </form>
+              </div>
+            <!--form>
+              <label for="city">City:</label>
+              <input type="text" id="city" name="city" value="London">
+              <label for="depart">Departure Date:</label>
+              <input type="depart" id="depart" name="depart" value="11-10-2020">
+            </form-->
+
+            </div>
+
+            <div class="card-details" onsubmit="return Client.performAction(event)">
+              <div class="clearTripButton addTripButton">
+                <div class="inner"><button id="getButton" type="submit" onclick="return Client.performAction(event)" onsubmit="return Client.performAction(event)">Submit</button></div>
+              </div>
+            </div>
+          </div>
+
+            <!--div class="vl"></div-->
+            <div class="card">              
+              <!--CARD right-->
+            <div class="card-right inner cardInnerRight">
+              <div><h2>Results</h2></div>
+              <p>
+              <figure>
+                <!--img id='card2logo' class="w3-circle2" alt="Avatar"></a-->
+                <figcaption class="figcap-font"></figcaption>
+              </figure>
+              </p>
+
+              <div class="result-style-3">
+                <form>
+                <fieldset><legend>Your Trip</legend>
+                <p>Some result here</p>
+                <p>Some result here</p>
+                <p>Some result here</p>           
+                </fieldset>
+                </form>
+                </div>
+            </div>
+            
+            <div class="card-details">
+              <div class="clearTripButton addTripButton">
+                <div class="inner"></div>
+              </div>
+            </div>
+          </div>
+        </div>       
+
+    </main>
+
+    <br><br>
+
     <footer id="contact" class="footer footer-box">
 
-        <div class="footer-text1">
-            <div><p>BE SOCIAL</p></div>
-        
-        <div id="nestedFootGrid">
-            <div class="con">
-            <div class="twit">
-            <div i class="fab fa-twitter fa-3x"></i></div></div></div>
+      <div class="footer-text1">
+        <div>
+          <p>BE SOCIAL</p>
+        </div>
 
-            <div class="con">
+        <div id="nestedFootGrid">
+         
+          <div class="con">
+            <div class="twit">
+              <div i class="fab fa-twitter fa-3x"></i></div>
+            </div>
+          </div>
+
+          <div class="con">
             <div class="face">
-            <div i class="fas fa-envelope fa-3x"></i></div></div></div>
-   
-            <div class="con">    
+              <div i class="fas fa-envelope fa-3x"></i></div>
+            </div>
+          </div>
+
+          <div class="con">
             <div class="mail">
-            <div i class="fab fa-facebook fa-3x"></i></div></div></div>
-        </div></div></div>
-    </footer>    
-  
+              <div i class="fab fa-facebook fa-3x"></i></div>
+            </div>
+          </div>
+        </div>
+   </footer>
+</div>
   </div>
 </body>
 
-  <script src="application.js" type="text/javascript"></script>
+<script src="../js/application.js" type="text/javascript"></script>
 
 </html>
