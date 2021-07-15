@@ -6,6 +6,10 @@ const userName = '&username=bamptini';
 
 //document.getElementById('getButton').addEventListener('click', performAction);
 
+// Add event listener for submit button
+document.getElementById("getButton").addEventListener('click', performAction);
+console.log('Just added event listener to submit button')
+
 
 function performAction(e){
   console.log('1 - Perform Action function')
@@ -13,6 +17,9 @@ function performAction(e){
     // Get input data from form data to include in the POST
     const city = document.getElementById('city').value;
     console.log('Place is '+ city)  
+
+    const startDate = document.getElementById('date').value;
+    console.log('Date is '+ date) 
 
     // Call API to get geonames details for specific place - based on user input into element.
     newInput(baseUrl,city,userName)
