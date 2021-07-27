@@ -14,10 +14,15 @@ document.getElementById('logo2').src = logo
 /* Add event listener for submit button
 document.getElementById("getButton").addEventListener('click', performAction);
 
+
+
 console.log('Just added event listener to submit button')
 */
 //import { performAction } from './js/application'
 
-export{
-   performAction, postData
-}
+// Add event listener for submit button
+document.getElementById("getButton").addEventListener('click', performAction);
+console.log('Just added event listener to submit button in index.js - probably can be removed')
+
+export{performAction, postData}
+console.log('Index.js -starting point')

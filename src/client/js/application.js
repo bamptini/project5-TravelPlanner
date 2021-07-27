@@ -1,18 +1,20 @@
-/* Global Variables */
+/* Global Variables POssibly not needed as they are defined in server.js */
+//const baseUrlGEO = 'http://api.geonames.org/searchJSON?q=';
+//const city = '';
+//const userName = '&username=bamptini';
 
-const baseUrl = 'http://api.geonames.org/searchJSON?q=';
-const city = '';
-const userName = '&username=bamptini';
-
-//document.getElementById('getButton').addEventListener('click', performAction);
+// Create a new date instance dynamically with JS
+let date = new Date();
+let newDate = date.getDate()+'.'+ date.getMonth()+'.'+ date.getFullYear();
+console.log('New date is '+ newDate);
 
 // Add event listener for submit button
 document.getElementById("getButton").addEventListener('click', performAction);
-console.log('Just added event listener to submit button')
+console.log('Just added event listener to submit button - application.js')
 
 
-function performAction(e){
-  console.log('1 - Perform Action function')
+export async function performAction(e){
+    console.log('1 - Perform Action function')
 
     // Get input data from form data to include in the POST
     const city = document.getElementById('city').value;
@@ -21,29 +23,54 @@ function performAction(e){
     const startDate = document.getElementById('date').value;
     console.log('Date is '+ date) 
 
+
+
+    if (city!= "") {
+
+      let body ={
+        city: city,
+      };
+
+      console.log(body);
+    }
     // Call API to get geonames details for specific place - based on user input into element.
-    newInput(baseUrl,city,userName)
+    
+    // TODO create threee async fucntion to get data form eahc of the API calls
+    await fetch ('/postTripData',
+    {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    }).then(await getData());
+
+  }
+    
+    (newInputGEO(baseUrl,city,userName)
         
     .then(function(data){
       console.log('4')
     
-    // Add all data into POST request    
-        postData('/all', {
+      postData('/location', {
 
                 city:data.city,
                 longitude:data.lng,
                 latitude:data.lat,
-                country:data.countryName});
+                //country:data.countryName
+              });
                 console.log('6')
             
     }) .then( () =>{
       console.log('7')
-        postUpdates()
-     }) 
-    };
+        postUpdates()  // Add all data from into POST request    
+  
+     }));
+    
 
 //GET data from WEB API using ASYNC
-    const newInput = async (baseURL, city, userName)=>{
+    const newInputGEO = async (baseURL, city, userName)=>{
       console.log('2')  
       console.log('New Input', {baseURL, city, userName})
       const response = await fetch(baseURL+city+userName) // await until all data is received from API call, then try
@@ -80,7 +107,7 @@ const postData = async ( baseUrl = '', data = {})=>{
 
   //CODE TO UPDATE UI
   const postUpdates = async()=>{  
-        const entries = await fetch('/all');
+        const entries = await fetch('/location');
         console.log('8')
         try{
             const projectData = await entries.json();
@@ -91,3 +118,4 @@ const postData = async ( baseUrl = '', data = {})=>{
         catch(err){
             console.log('Error posting data ' + err);
         }}
+

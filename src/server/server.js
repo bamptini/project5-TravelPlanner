@@ -6,12 +6,24 @@ endPoint = {};
 const dotenv = require('dotenv');
 dotenv.config();
 
-// API REFERENCES
-const baseUrl = 'https://api.meaningcloud.com/sentiment-2.1?key=';
-const apiKey = process.env.API_KEY;
-const language = '&lang=en&url='
+// GEO API REFERENCES
+const GEO_baseUrl = 'http://api.geonames.org/searchJSON?q=';
+const GeoAPIUser = process.env.GEO_API_USERNAME;
+//Example - http://api.geonames.org/searchJSON?q=London&username=GeoAPIUser
 
-//console.log(`Your API key is ${process.env.API_KEY}`);
+// WEATHER API REFERENCES
+const WEATHER_baseUrl = 'http://api.weatherbit.io/v2.0/forecast/daily?';
+const WEATHER_API_KEY = process.env.WEATHERBIT_API_KEY;
+//Example - http://api.weatherbit.io/v2.0/forecast/daily?lat=35.555&lon=-45.333&key=xxxxxxxxxx
+
+// PIXABAY API REFERENCES
+const PIXABAY_API_KEY = process.env.PIXABAT_API_KEY;
+const PIX_baseUrl = 'https://pixabay.com/api/?key=' + PIXABAY_API_KEY + '&q='; //+ city + '&image_type=photo&category=places' ;
+//const GeoapiKey = process.env.PIXABAY_API_ID;
+//Example - https://pixabay.com/api/?key={ KEY }&q=yellow+flowers&image_type=photo
+//Example - https://pixabay.com/api/?key={####}&q=Portsmouth&image_type=photo&category=places
+
+console.log('PIX URL = ' + PIX_baseUrl);
 
 // START EXPRESS
 const express = require('express')
@@ -26,6 +38,11 @@ app.use(express.json());
 // OTHER DEPENDENCIES
 const path = require('path')
 const bodyParser = require('body-parser');
+app.use(bodyParser.json())
+
+app.use(bodyParser.urlencoded({
+    extended: true
+  }))
 
 // CORS FOR CROSS ORIGIN ALLOWANCE
 const cors = require('cors');
@@ -36,36 +53,57 @@ app.use(express.static('dist'))
 console.log(__dirname);
 
 // ASSIGN PORT
-app.listen(8082, function () {
-    console.log('Example app listening on production port 8082!')
+app.listen(8086, function () {
+    console.log('Example app listening on production port 8086!')
 });
-
 
 //-------------- ROUTES ------------------//
 
-//------- GET route Returns journalData object
-app.get('/all', getData); //Get feeling data when index URI is used
+//------- GET route Returns locationData object
+app.get('/location', getLocation); //Get data for entered Location
 
-function getData (request, response){
-    response.send(journalData); //send response to endpoint (object)
-    console.log(journalData);
+function getLocation (request, response){
+    response.send(endPoint); //send response to endpoint (object)
+    console.log(endPoint);
 };
 
-//--------POST ROUTE-------------------------
-app.post('/all', postData); //URL needs to be defined #IMPORTANT URL CHANGE
+// NEW POST CODE - Maybe re use below
 
-function postData (request, response) {
+app.post('/postTripData', async (request, response) =>
+{
+    let destination = req.body.city;
+    console.log('Destination is '+ destination);
 
-    let data = request.body;
+    let  holdData = get(GEO_baseUrl + destination + "&maxRows=1&username=" + GEO_API_USERNAME);
+    await holdData.then (async response =>{
 
-console.log('POST Update to server ', data);
+        let lat = holdData[0].lng;
+        let long = holdData[0].lat;
 
-journalData["dttm"] = data.dttm;
-journalData["temp"] = data.temp;
-journalData["feeling"] = data.feeling;
-journalData["city"] = data.location;
+        let weather = get(WEATHER_baseUrl + 'lat=' + lat +'&lon=' + long);
+        console.log (weather);
+        let image = get(PIX_baseUrl + destination + "&image_type=photo");
+    });
+});
 
-response.send(journalData);
-};
+/*--------POST ROUTE-------------------------
+app.post('/location', postData); //URL needs to be defined #IMPORTANT URL CHANGE
+
+async function postData (request, response) {
+
+    let city = request.body.city;
+
+console.log('POST Update to server ', city);
+
+    let temperature = 
+
+endPoint["dttm"] = data.dttm;
+endPoint["temp"] = data.temp;
+endPoint["feeling"] = data.feeling;
+endPoint["city"] = data.location;
+
+response.send(endPoint);
+};*/
+
 
 //-------END POST ROUTE---------------------

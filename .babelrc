@@ -6,6 +6,6 @@
                 {
                     "exclude": ["transform-regenerator"]
                 }
-        ] // Was singel quotes-changes to double
+        ] // Was single quotes-changes to double
             ]
 }
