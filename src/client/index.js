@@ -25,4 +25,3 @@ document.getElementById("getButton").addEventListener('click', performAction);
 console.log('Just added event listener to submit button in index.js - probably can be removed')
 
 export{performAction, postData}
-console.log('Index.js -starting point')
