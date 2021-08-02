@@ -1,4 +1,3 @@
-
 // CREATE VARIABLE FOR HIDING API KEY - These variables come from server.js, is this correct ????
 
 // GEO API REFERENCES
@@ -19,8 +18,6 @@ const PIX_baseUrl = 'https://pixabay.com/api/?key=' + PIXABAY_API_KEY + '&q='; /
 //Example - https://pixabay.com/api/?key={####}&q=Portsmouth&image_type=photo&category=places
 
 console.log('PIX URL = ' + PIX_baseUrl);
-
-
 
 /* Global Variables Possibly not needed as they are defined in server.js */
 //const baseUrlGEO = 'http://api.geonames.org/searchJSON?q=';
@@ -110,14 +107,13 @@ export async function performAction(e){
       console.log('7')
         postUpdates()  // Add all data from into POST request    
   
-     }));*/
-    
+     }));*/    
 
 //GET data from WEB API using ASYNC
-    const newInputGEO = async (baseURL, city, userName)=>{
+    const newInputGEO = async (GEO_baseUrl, city, userName)=>{
       console.log('2')  
-      console.log('New Input', {baseURL, city, userName})
-      const response = await fetch(baseURL+city+userName) // await until all data is received from API call, then try
+      console.log('New Input', {GEO_baseUrl, city, userName})
+      const response = await fetch(GEO_baseUrl+city+userName) // await until all data is received from API call, then try
       try { // If fetch goes well    
         const data = await response.json(); // Return data as JSON
         console.log('3' + data)
@@ -129,9 +125,9 @@ export async function performAction(e){
     }
 
 //POST DATA function
-const postData = async ( baseUrl = '', data = {})=>{
+const postData = async (FullUrl = '', data = {})=>{
   console.log('5')
-      const response = await fetch(baseUrl, {
+      const response = await fetch(FullUrl, {
       method: 'POST', 
       credentials: 'same-origin',
       headers: {
