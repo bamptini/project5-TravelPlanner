@@ -6,6 +6,7 @@ import { performAction } from './js/application'
 import { postData } from './js/postData'
 
 
+
 document.getElementById('logo2').src = logo
 //Images defined to use inside cards but not currenlty being used.
 //document.getElementById('card1logo').src = img

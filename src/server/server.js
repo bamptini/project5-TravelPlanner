@@ -6,8 +6,8 @@ endPoint = {};
 const dotenv = require('dotenv');
 dotenv.config();
 
-// GEO API REFERENCES
-const GEO_baseUrl = 'http://api.geonames.org/searchJSON?q=';
+/* GEO API REFERENCES
+let GEO_baseUrl = 'http://api.geonames.org/searchJSON?q=';
 const GeoAPIUser = process.env.GEO_API_USERNAME;
 //Example - http://api.geonames.org/searchJSON?q=London&username=GeoAPIUser
 
@@ -23,7 +23,7 @@ const PIX_baseUrl = 'https://pixabay.com/api/?key=' + PIXABAY_API_KEY + '&q='; /
 //Example - https://pixabay.com/api/?key={ KEY }&q=yellow+flowers&image_type=photo
 //Example - https://pixabay.com/api/?key={####}&q=Portsmouth&image_type=photo&category=places
 
-console.log('PIX URL = ' + PIX_baseUrl);
+console.log('PIX URL = ' + PIX_baseUrl);*/
 
 // START EXPRESS
 const express = require('express')
@@ -75,6 +75,7 @@ app.post('/postTripData', async (request, response) =>
     console.log('Destination is '+ destination);
 
     let  holdData = get(GEO_baseUrl + destination + "&maxRows=1&username=" + GEO_API_USERNAME);
+    console.log ("holdData is set to: " + holdData);
     await holdData.then (async response =>{
 
         let lat = holdData[0].lng;
