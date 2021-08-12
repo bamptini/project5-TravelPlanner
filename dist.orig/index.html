@@ -7,22 +7,23 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 
 
-  <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
   <!--link rel="stylesheet" href="../styles/another.scss"-->
-
   <!--link rel="stylesheet" href="css/navbar.css"-->
+
 <link href="main.css" rel="stylesheet"></head>
 
 <body>
   <div class="title">
     <br>
-    <p>TRAVEL PLANNER DIST</p>
+    <p>TRAVEL PLANNER</p><br>
+    <img id='logo2' class="w3-circle" alt="Avatar">
     <br>
   </div>
 
-  <div class="grid-container">
+  <div class="">
     <header class="header">
       <div id="nestedHeaderGrid" class="header-box">
         <div class="nav-bar topnav">
@@ -35,56 +36,76 @@
           <p><q>Want to know what the weather is expected to be like for your trip ?</q></p>
         </div>
       </div>
-      <div>
+    
     </header>
-    <br>
-    <main class="content nested-box">
-      <div id="nestedGrid" class="nested-box">
+    
+    <main class="content nested-box-inner">
+      <div id="nestedGrid" class="nested-box-inner">
         
         <div class="card">
-          <!--CARD 1-->
-          <div class="card1">
-            <!-- div class="cardimg"-->
-            <p>
+          <!--CARD left-->          
+            <div class="card-left inner cardInnerLeft">
+            <div><h2>Enter details</h2></div>
+              <p>
             <figure>
-              <img id="logo" class="w3-circle" alt="Avatar"></a>
+              <!--img id='card1logo' class="w3-circle2" alt="Avatar"></a-->
               <figcaption class="figcap-font"></figcaption>
-            </figure>
-            </p>
+            </figure></p>
+
+            <div class="form-style-3">
+              <form>
+              <fieldset><legend>Your Trip</legend>
+              <label for="field1"><span>City <span class="required">*</span></span><input type="text" id='city' class="input-field" name="field1" value="London" /></label>
+              <label for="field2"><span>Date <span class="required">*</span></span><input type="date" id='date' class="input-field" name="field2" value="" /></label>
+              </fieldset>
+              </form>
+              </div>
+            <!--form>
+              <label for="city">City:</label>
+              <input type="text" id="city" name="city" value="London">
+              <label for="depart">Departure Date:</label>
+              <input type="depart" id="depart" name="depart" value="11-10-2020">
+            </form-->
+
+            </div>
+
             <div class="card-details">
-              <h2>Enter Details</h2><span></span>
+              <div class="clearTripButton addTripButton"></div>
+                <div class="inner"><button id="getButton" type="submit">Submit</button></div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="card">
-          <!--CARD 2-->
-          <div class="card2">
-            <!-- div class="cardimg"-->
-            <p>
-            <figure>
-              <img id="logo2" class="w3-circle" alt="Avatar"></a>
-              <figcaption class="figcap-font"></figcaption>
-            </figure>
-            </p>
+            <!--div class="vl"></div-->
+            <div class="card">              
+              <!--CARD right-->
+            <div class="card-right inner cardInnerRight">
+              <div><h2>Results</h2></div>
+              <p>
+              <figure>
+                <!--img id='card2logo' class="w3-circle2" alt="Avatar"></a-->
+                <figcaption class="figcap-font"></figcaption>
+              </figure>
+              </p>
+
+              <div class="result-style-3">
+                <form>
+                <fieldset><legend>Your Trip</legend>
+                <p>Some result here</p>
+                <p>Some result here</p>
+                <p>Some result here</p>           
+                </fieldset>
+                </form>
+                </div>
+            </div>
+            
             <div class="card-details">
-              <h2>Location Results</h2>
-                <div id="country"></div>
-                <div id="long"></div>
-                <div id="lat"></div>
+              <div class="clearTripButton addTripButton">
+                <div class="inner"></div>
+              </div>
             </div>
           </div>
-        </div>
-  
-        
-        <div class="clearTripButton">
-          <button id="clearTrip" type="submit"> Clear Trip </button>
-        </div>  
-
-            <div class="addTripButton">
-              <button id="addTrip" type="submit"> Add Trip </button>
-            </div>
-        
+        </div>       
 
     </main>
 
@@ -98,6 +119,7 @@
         </div>
 
         <div id="nestedFootGrid">
+         
           <div class="con">
             <div class="twit">
               <div i class="fab fa-twitter fa-3x"></i></div>
@@ -116,10 +138,8 @@
             </div>
           </div>
         </div>
-      </div>
-  </div>
-  </footer>
-
+   </footer>
+</div>
   </div>
 <script type="text/javascript" src="main.js"></script></body>
 
