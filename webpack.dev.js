@@ -19,7 +19,9 @@ module.exports = {
             '/getData': 'http://localhost:8086',
             '/location': 'http://localhost:8086',
             '/weather': 'http://localhost:8086',
-            '/postTrip': 'http://localhost:8086'
+            '/postTrip': 'http://localhost:8086',
+            '/all': 'http://localhost:8086',
+            '/pix': 'http://localhost:8086',
         }
         //port:8081 // By default webpack runs on port 8080, this will change default port
     },
