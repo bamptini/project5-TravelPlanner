@@ -10,7 +10,7 @@ const WEATHER_API_KEY = process.env.WEATHERBIT_API_KEY;
 //Example - http://api.weatherbit.io/v2.0/forecast/daily?lat=35.555&lon=-45.333&key=xxxxxxxxxx
 
 // PIXABAY API REFERENCES
-const PIXABAY_API_KEY = process.env.PIXABAT_API_KEY;
+const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
 const PIX_baseUrl = "https://pixabay.com/api/?key=" + PIXABAY_API_KEY + "&q="; 
 //Example - https://pixabay.com/api/?key={ KEY }&q=yellow+flowers&image_type=photo
 //Example - https://pixabay.com/api/?key={####}&q=Portsmouth&image_type=photo&category=places
@@ -44,7 +44,7 @@ export async function performAction(e) {
     //Call newInputGEO function passing in the API call, using the URL, city entered by user and username 
     newInputGEO(GEO_baseUrl, city, userName)
   
-    //data is retunred from newInputGEO then...
+    //result is retunred from newInputGEO then...
       .then(function (result) {
         console.log("4");
         //console.log(result);
@@ -53,82 +53,48 @@ export async function performAction(e) {
           const longitude = result.lng
           const latitude = result.lat
           console.log(longitude)
-          console.log(latitude)
+          console.log(latitude) 
           const weatherString="lat="+latitude+"&lon="+longitude+"&key="
           console.log(weatherString)
 
           newInputWeather(WEATHER_baseUrl, weatherString, WEATHER_API_KEY).then(function (weather) {
               console.log("7");
-              postData("/location", {
-                city: result.name,
+              console.log(weather)
+              postData("/weather", {
+                city: city,
+                //city: result.city,
                 longitude: result.lng,
                 latitude: result.lat,
                 population: Math.round(result.population/1000000).toFixed(2)+'m',
                 country: result.countryName,
-                    temperature: weather.temp,
-                    low: weather.low_temp,
-                    high: weather.high_templat,
-                    sunrise: weather.sunrise_ts,
+                temperature: weather.temp,
+                low: weather.low_temp,
+                high: weather.high_temp,
+                sunrise: weather.sunrise_ts,
 
-                  });
+                  },
+              );         
                   console.log("9");
-           });
+           }); 
 
-        /*newInputWeather(WEATHER_baseUrl, weatherString, WEATHER_API_KEY)
-          .then(function (wResult) {
-          console.log("10")
-          //console.log(wResult)
+           newInputPIX(PIX_baseUrl, city).then(function (pixResult) {
+            console.log("PIX 2");
+            console.log(pixResult)
+            postData("/pix", {
+              
+              PIXUrl: pixResult.pageURL,
 
-        console.log("weather API called")
-
-        postData("/weather", {
-          city: result.name,
-          longitude: result.lng,
-          latitude: result.lat,
-          population: Math.round(result.population/1000000).toFixed(2)+'m',
-          country: result.countryName,
-          temperature: wResult.temp,
-          low: wResult.low_temp,
-          high: wResult.high_templat,
-          sunrise: wResult.sunrise_ts,
-        });
-        console.log("7");
-///////////////////////////////////////////////////TEMP REMOVAL //       postUpdates(); // Add all data from into POST request
-  });*/
-      })   
+                },
+            );       
+                console.log("10");
+         });
+      })
   }
-    
-  await fetch("/postTripData", {
-    method: "POST",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  }).then ();
- /////////////////////////////////////////////////////TEMP REMOVAL //}).then(await getData());
+ /*then( ()=> {
+  console.log("Now posting updates")
+  postUpdates();
+}); */ 
 }
-
-/*(newInputGEO(baseUrl,city,userName)
-        
-    .then(function(data){
-      console.log('4')
-    
-      postData('/location', {
-
-                city:data.city,
-                longitude:data.lng,
-                latitude:data.lat,
-                //country:data.countryName
-              });
-                console.log('6')
-            
-    }) .then( () =>{
-      console.log('7')
-        postUpdates()  // Add all data from into POST request    
-  
-     }));*/
-
 //GET data from GEONAMES WEB API using ASYNC function. Results will be for the City entered by user
 const newInputGEO = async (GEO_baseUrl, city, userName) => {
   console.log("2");
@@ -149,7 +115,6 @@ const newInputGEO = async (GEO_baseUrl, city, userName) => {
   }
 };
 
-
 //GET data from WEATHER API using ASYNC function. Results will be for the City entered by user
 const newInputWeather = async (WEATHER_baseUrl, weatherString, WEATHER_API_KEY) => {
   console.log("5")
@@ -169,19 +134,21 @@ const newInputWeather = async (WEATHER_baseUrl, weatherString, WEATHER_API_KEY) 
   }
 };
 
-
 //GET data from PIXABAY API using ASYNC function. Results will be for the City entered by user
-const newInputPIX = async (PIX_baseUrl, city, userName) => {
-  console.log("2");
+const newInputPIX = async (PIX_baseUrl, city) => {
+  console.log("PIX 1 ");
+  console.log(city);
+
   //console.log("New Input", { GEO_baseUrl, city, userName });
-  const response = await fetch(GEO_baseUrl + city + userName); // await until all data is received from API call, then try
+  const response = await fetch(PIX_baseUrl + city);
+  console.log(response) // await until all data is received from API call, then try
   try {
     // If fetch works, convert 'response' into json and store in 'data'
     const data = await response.json(); // Return data as JSON
-    console.log("newInputPIX -");
-    let result = data.geonames[0];
-    console.log(result);
-    return result;
+    console.log("newInputPIX");
+    let pixResult = data.hits[0];
+    console.log(pixResult);
+    return pixResult;
    // return data;
   } catch (error) {
     //If fetch goes wrong then error.
@@ -202,9 +169,9 @@ export const postData = async (Url = "", data = {}) => {
       "Content-Type": "application/json",
     },
     // Body data type must match "Content-Type" header
-    body: JSON.stringify(data),
+    body: JSON.stringify(data),    
   });
-  console.log("postData ended");
+  console.log("postData ended going into try block");
   try {
     const newData = await response.json();
     console.log("New data = " + newData)
@@ -217,7 +184,7 @@ export const postData = async (Url = "", data = {}) => {
 
 //CODE TO UPDATE UI
 const postUpdates = async () => {
-  const entries = await fetch("/location");
+  const entries = await fetch("/all");
   console.log("8");
   try {
     const projectData = await entries.json();

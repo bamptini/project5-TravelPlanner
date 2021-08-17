@@ -29,6 +29,7 @@ app.use(
 
 // CORS FOR CROSS ORIGIN ALLOWANCE
 const cors = require("cors");
+const { ResolvePlugin } = require("webpack");
 app.use(cors());
 
 // SETUP DEPLOYMENT FOLDER
@@ -42,29 +43,40 @@ app.listen(8086, function () {
 
 //-------------- ROUTES ------------------//
 
-//------- GET route Returns locationData object
-app.get("/location", getLocation); //Get data for entered Location
 
+//------- GET route sends locationData object to endpoint
+app.get("/all", (req,res) => {
+  res.send(endPoint); //send response to endpoint (object)
+  console.log("sending all to endpoint " + endPoint);
+}); 
+
+//------- GET route sends locationData object to endpoint
+app.get("/location", getLocation); //Get location details for entered Location
 function getLocation(request, response) {
   response.send(endPoint); //send response to endpoint (object)
-  console.log(endPoint);
+  console.log("sending location to endpoint " + endPoint);
 }
 
-//------- GET route Returns locationData object
-app.get("/weather", getWeather); //Get data for entered Location
-
+//------- GET route sends weathernData object to endpoint
+app.get("/weather", getWeather); //Get weather details for entered Location
 function getWeather(request, response) {
   response.send(endPoint); //send response to endpoint (object)
-  console.log("sending to endpoint " + endPoint);
+  console.log("sending weather to endpoint " + endPoint);
 }
 
-// NEW POST CODE - Maybe re use below
+//------- GET route sends location picture object to endpoint
+app.get("/pix", getPix); //Get weather details for entered Location
+function getPix(request, response) {
+  response.send(endPoint); //send response to endpoint (object)
+  console.log("sending pix to endpoint " + endPoint);
+}
+
+/* NEW POST CODE - Maybe re use below
 app.post("/postTripData", async (request, response) => {
-  let destination = req.body.city;
+  let destination = request.body.city;
   console.log("Destination is " + destination);
 
-  let holdData = get(
-    GEO_baseUrl + destination + "&maxRows=1&username=" + GEO_API_USERNAME
+  let holdData = get(GEO_baseUrl + destination + "&maxRows=1&username=" + GEO_API_USERNAME
   );
   console.log("holdData is set to: " + holdData);
   await holdData.then(async (response) => {
@@ -75,25 +87,24 @@ app.post("/postTripData", async (request, response) => {
     console.log(weather);
     let image = get(PIX_baseUrl + destination + "&image_type=photo");
   });
-});
+});*/
 
-/*--------POST ROUTE-------------------------
-app.post('/location', postData); //URL needs to be defined #IMPORTANT URL CHANGE
+//--------POST ROUTES-------------------------
+app.post('/postTrip', postData);
 
 async function postData (request, response) {
 
-    let city = request.body.city;
+    let data = request.body;
 
-console.log('POST Update to server ', city);
+    console.log('POST location updates to server ', data);
 
-    let temperature = 
-
-endPoint["dttm"] = data.dttm;
-endPoint["temp"] = data.temp;
-endPoint["feeling"] = data.feeling;
-endPoint["city"] = data.location;
+endPoint["city"] = data.city
+endPoint["long"] = data.lngtemp;
+endPoint["lat"] = data.lat;
+endPoint["minTemp"] = data.low_temp;
+endPoint["maxTemp"] = data.high_temp;
+endPoint["maxTemp"] = data.temp;
 
 response.send(endPoint);
-};*/
-
+};
 //-------END POST ROUTE---------------------

@@ -15,6 +15,12 @@ module.exports = {
         library: 'Client'
     },
     devServer: {
+        proxy:{
+            '/getData': 'http://localhost:8086',
+            '/location': 'http://localhost:8086',
+            '/weather': 'http://localhost:8086',
+            '/postTrip': 'http://localhost:8086'
+        }
         //port:8081 // By default webpack runs on port 8080, this will change default port
     },
     module: {

@@ -2,6 +2,7 @@ import "./styles/all-styles.scss";
 import logo from "./media/blue-globe.jpg";
 import "./js/application";
 import { performAction } from "./js/application";
+
 //import {postData} from "./js/postData";
 //import { postData } from "./js/postData";
 //import { postData } from "./js/application";
