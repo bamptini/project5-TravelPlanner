@@ -74,14 +74,15 @@ export async function performAction(e) {
         console.log("6");
         //console.log(pixResult);
         const PIXUrl = pixResult.pageURL
-        console.log(PIXUrl);
+       //console.log(PIXUrl);
       });
 
       newInputWeather(WEATHER_baseUrl, weatherString, WEATHER_API_KEY).then(function (weather) {
           console.log("9");
           console.log(weather);
           
-          postData("/weather", {
+          
+          postData("/postTrip", {
             city: city,
             longitude: result.lng,
             latitude: result.lat,
@@ -174,7 +175,7 @@ const newInputPIX = async (PIX_baseUrl, city) => {
 
 //POST DATA function -- ADDED export key word as a prefix to const postData
 export const postData = async (Url = "", data = {}) => {
-  console.log("8 postDataCalled");
+  console.log("8 postTripCalled");
   console.log(Url);
   console.log(data);
   const response = await fetch(Url, {
@@ -194,7 +195,7 @@ export const postData = async (Url = "", data = {}) => {
   } catch (error) {
     console.log("These is an error in postData function:", error);
   }
-  console.log("Returning newData to ");
+  console.log("Returning newData too ");
 };
 
 //CODE TO UPDATE UI
