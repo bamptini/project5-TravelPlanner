@@ -53,13 +53,15 @@
             </figure></p>
 
             <div class="form-style-3">
-              <form>
+              <form id=trip-form method="POST">
               <fieldset><legend>Your Trip</legend>
               <label for="field1"><span>City <span class="required">*</span></span><input type="text" id='city' class="input-field" name="field1" value="London" /></label>
-              <label for="field2"><span>Date <span class="required">*</span></span><input type="date" id='date' class="input-field" name="field2" value="" /></label>
+              <label for="field2"><span>Stat Date <span class="required">*</span></span><input type="date" id='startDate' class="input-field" name="field2" value="" /></label>
+              <label for="field3"><span>End Date <span class="required">*</span></span><input type="date" id='endDate' class="input-field" name="field3" value="" /></label>
               </fieldset>
               </form>
               </div>
+              <div></div>
             <!--form>
               <label for="city">City:</label>
               <input type="text" id="city" name="city" value="London">
@@ -67,12 +69,11 @@
               <input type="depart" id="depart" name="depart" value="11-10-2020">
             </form-->
 
-            </div>
-
             <div class="card-details">
               <div class="clearTripButton addTripButton"></div>
                 <div class="inner"><button id="getButton" type="submit">Submit</button></div>
               </div>
+            <div id="message"><p></p></div>
             </div>
           </div>
 
@@ -90,10 +91,12 @@
 
               <div class="result-style-3">
                 <form>
-                <fieldset><legend>Your Trip</legend>
-                <p>Some result here</p>
-                <p>Some result here</p>
-                <p>Some result here</p>           
+                <fieldset><legend>Trip Info</legend>
+                <p id="city"></p>
+                <p id="mintemp"></p>
+                <p id="maxtemp"></p>
+                <p id="curernttemp"></p>
+                <p id="pix"></p>           
                 </fieldset>
                 </form>
                 </div>

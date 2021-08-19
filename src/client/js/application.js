@@ -15,22 +15,20 @@ const PIX_baseUrl = "https://pixabay.com/api/?key=" + PIXABAY_API_KEY + "&q=";
 //Example - https://pixabay.com/api/?key={ KEY }&q=yellow+flowers&image_type=photo
 //Example - https://pixabay.com/api/?key={####}&q=Portsmouth&image_type=photo&category=places
 
-console.log("PIX URL = " + PIX_baseUrl);
-
 //Global Variables
 const userName = "&username=" + process.env.GEO_API_USERNAME;
 
 const d = new Date();
-console.log(d.getTime());
+//console.log(d.getTime());
 
 // Create a new date instance dynamically with JS
 let date = new Date();
 let newDate = date.getDate() + "." + date.getMonth() + "." + date.getFullYear();
-console.log("New date is " + newDate);
+//console.log("New date is " + newDate);
 
 let epoc = new Date();
 let newEpoc = epoc.getTime();
-console.log("Epoc date is " + newEpoc);
+//console.log("Epoc date is " + newEpoc);
 
 // START OF IT ALL
 export async function performAction(e) {
@@ -55,7 +53,6 @@ export async function performAction(e) {
     };*/
 
   //Check if all fields have been populated -
-
   if (city != "" && startDate != "" && endDate != "") {
     //Reset message to blank, if data is entered
     document.getElementById("message").innerHTML = ``;
@@ -69,20 +66,19 @@ export async function performAction(e) {
       const longitude = result.lng;
       const latitude = result.lat;
       const weatherString = "lat=" + latitude + "&lon=" + longitude + "&key=";
- 
-      newInputPIX(PIX_baseUrl, city).then(function (pixResult) {
-        console.log("6");
-        //console.log(pixResult);
-        const PIXUrl = pixResult.pageURL
-       //console.log(PIXUrl);
-      });
 
       newInputWeather(WEATHER_baseUrl, weatherString, WEATHER_API_KEY).then(function (weather) {
-          console.log("9");
+          console.log("7");
           console.log(weather);
+
+      newInputPIX(PIX_baseUrl, city).then(function (pixResult) {
+          console.log("9");
+          //console.log(pixResult);
+          const PIXUrl = pixResult.pageURL
+          //console.log(PIXUrl);
+          //});    
           
-          
-          postData("/postTrip", {
+      postData("/postTrip", {
             city: city,
             longitude: result.lng,
             latitude: result.lat,
@@ -93,26 +89,20 @@ export async function performAction(e) {
             high: weather.high_temp,
             sunrise: weather.sunrise_ts,
             image: PIXUrl,
+          }).then(() =>{
+            postUpdates()
           });
-          console.log("10");
-        }
-      );
-      //Now we have all the data, lets post it here......
-      //postData()
-
+          console.log("11");
+        });
+      }
+      )
     });
-  }
-  //If any fields are blank, then send message to user
-  else
-    document.getElementById(
-      "message"
-    ).innerHTML = `Please enter a City, Start and End dates`;
-
-  /*then( ()=> {
-  console.log("Now posting updates")
-  postUpdates();
-}); */
+} else //If any fields are blank, then send message to user
+document.getElementById("message").innerHTML = `Please enter a City, Start and End dates`;
 }
+//Now we have all the data, lets post it here......
+//postUpdates()
+
 //GET data from GEONAMES WEB API using ASYNC function. Results will be for the City entered by user
 const newInputGEO = async (GEO_baseUrl, city, userName) => {
   console.log("2");
@@ -135,7 +125,7 @@ const newInputGEO = async (GEO_baseUrl, city, userName) => {
 
 //GET data from WEATHER API using ASYNC function. Results will be for the City entered by user
 const newInputWeather = async (WEATHER_baseUrl, weatherString, WEATHER_API_KEY) => {
-  console.log("7");
+  console.log("5");
   const wResponse = await fetch(
     WEATHER_baseUrl + weatherString + WEATHER_API_KEY
   ); // await until all data is received from API call, then try
@@ -144,7 +134,7 @@ const newInputWeather = async (WEATHER_baseUrl, weatherString, WEATHER_API_KEY) 
     const weather = await wResponse.json(); // Return data as JSON
     const wResult = weather.data[0]; // Get first result returned JSON data
     //console.log(wResult);
-    console.log("8");
+    console.log("6");
     return wResult;
     // return data;
   } catch (error) {
@@ -161,7 +151,7 @@ const newInputPIX = async (PIX_baseUrl, city) => {
   try {
     // If fetch works, convert 'response' into json and store in 'data'
     const data = await response.json(); // Return data as JSON
-    console.log("5");
+    console.log("8");
     let pixResult = data.hits[0];
     //console.log(pixResult);
     return pixResult;
@@ -175,7 +165,7 @@ const newInputPIX = async (PIX_baseUrl, city) => {
 
 //POST DATA function -- ADDED export key word as a prefix to const postData
 export const postData = async (Url = "", data = {}) => {
-  console.log("8 postTripCalled");
+  console.log("10");
   console.log(Url);
   console.log(data);
   const response = await fetch(Url, {
@@ -198,22 +188,46 @@ export const postData = async (Url = "", data = {}) => {
   console.log("Returning newData too ");
 };
 
+//GET DATA function
+/*export const getData = async (Url = "", data = {}) => {
+  console.log("ZZ");
+   console.log("Called getData");
+   const response = await fetch(Url, {
+    method: "GET",
+    credentials: "same-origin",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    // Body data type must match "Content-Type" header
+    body: JSON.stringify(data),
+  });
+  console.log("getData ended going into try block");
+  try {
+    const newData = await response.json();
+    console.log("New data = " + newData);
+    return newData;
+  } catch (error) {
+    console.log("These is an error in postData function:", error);
+  }
+  console.log("Returning newData too ");
+};*/
+
 //CODE TO UPDATE UI
 const postUpdates = async () => {
   const entries = await fetch("/all");
-  console.log("8");
+  console.log("postUpdate line 215 called");
   try {
     const projectData = await entries.json();
-    document.getElementById(
-      "counrty"
-    ).innerHTML = `Country: ${projectData.country}`;
-    document.getElementById(
-      "long"
-    ).innerHTML = `Longitude: ${projectData.longitude}`;
-    document.getElementById(
-      "lat"
-    ).innerHTML = `Latitude: ${projectData.latitude}`;
+    document.getElementById("city").innerHTML = `City: ${projectData.city}`;
+    document.getElementById("mintemp").innerHTML = `Minimum Temperature: ${projectData.minTemp}`;
+    document.getElementById("maxtemp").innerHTML = `Maximum Temperature: ${projectData.maxTemp}`;
+    document.getElementById("currenttemp").innerHTML = `Current Temperature: ${projectData.temp}`;
+    document.getElementById("pix").innerHTML = `Image: ${projectData.image}`;
+    //document.getElementById("pix2").innerHTML = <img src=\${projectData.image}>;
+
+
   } catch (err) {
     console.log("Error posting data " + err);
-  }
-};
+}}
+
+

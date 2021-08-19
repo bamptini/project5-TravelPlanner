@@ -43,68 +43,31 @@ app.listen(8086, function () {
 
 //-------------- ROUTES ------------------//
 
-
 //------- GET route sends locationData object to endpoint
 app.get("/all", (req,res) => {
   res.send(endPoint); //send response to endpoint (object)
-  console.log("sending all to endpoint " + endPoint);
+  console.log("sending all to endpoint ");
+  console.log("endPoint");
 }); 
 
-//------- GET route sends locationData object to endpoint
-app.get("/location", getLocation); //Get location details for entered Location
-function getLocation(request, response) {
-  response.send(endPoint); //send response to endpoint (object)
-  console.log("sending location to endpoint " + endPoint);
-}
-
-//------- GET route sends weathernData object to endpoint
-app.get("/weather", getWeather); //Get weather details for entered Location
-function getWeather(request, response) {
-  response.send(endPoint); //send response to endpoint (object)
-  console.log("sending weather to endpoint " + endPoint);
-}
-
-//------- GET route sends location picture object to endpoint
-app.get("/pix", getPix); //Get weather details for entered Location
-function getPix(request, response) {
-  response.send(endPoint); //send response to endpoint (object)
-  console.log("sending pix to endpoint " + endPoint);
-}
-
-/* NEW POST CODE - Maybe re use below
-app.post("/postTripData", async (request, response) => {
-  let destination = request.body.city;
-  console.log("Destination is " + destination);
-
-  let holdData = get(GEO_baseUrl + destination + "&maxRows=1&username=" + GEO_API_USERNAME
-  );
-  console.log("holdData is set to: " + holdData);
-  await holdData.then(async (response) => {
-    let lat = holdData[0].lng;
-    let long = holdData[0].lat;
-
-    let weather = get(WEATHER_baseUrl + "lat=" + lat + "&lon=" + long);
-    console.log(weather);
-    let image = get(PIX_baseUrl + destination + "&image_type=photo");
-  });
-});*/
-
-//--------POST ROUTES-------------------------
+//--------POST ROUTE-------------------------
 app.post('/postTrip', postData);
 
 async function postData (request, response) {
 
     let data = request.body;
-
     console.log('POST location updates to server ', data);
 
-endPoint["city"] = data.city
-endPoint["long"] = data.lngtemp;
-endPoint["lat"] = data.lat;
-endPoint["minTemp"] = data.low_temp;
-endPoint["maxTemp"] = data.high_temp;
-endPoint["maxTemp"] = data.temp;
+    endPoint["city"] = data.city;
+    endPoint["long"] = data.longitude;
+    endPoint["lat"] = data.latitude;
+    endPoint["minTemp"] = data.low;
+    endPoint["maxTemp"] = data.high;
+    endPoint["temp"] = data.temperature;
+    endPoint["pix"] = data.image;
 
 response.send(endPoint);
+
+
 };
 //-------END POST ROUTE---------------------
