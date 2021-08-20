@@ -19,16 +19,11 @@ const PIX_baseUrl = "https://pixabay.com/api/?key=" + PIXABAY_API_KEY + "&q=";
 const userName = "&username=" + process.env.GEO_API_USERNAME;
 
 const d = new Date();
-//console.log(d.getTime());
 
-// Create a new date instance dynamically with JS
+// Creating a new date instance
 let date = new Date();
 let newDate = date.getDate() + "." + date.getMonth() + "." + date.getFullYear();
 //console.log("New date is " + newDate);
-
-let epoc = new Date();
-let newEpoc = epoc.getTime();
-//console.log("Epoc date is " + newEpoc);
 
 // START OF IT ALL
 export async function performAction(e) {
@@ -39,18 +34,28 @@ export async function performAction(e) {
   console.log("Place is " + city);
 
   //Start Date - Time variable
-  const startDate = document.getElementById("startDate").value;
-  console.log("Start date is " + startDate);
+  const sDate = new Date(document.getElementById("startDate").value);
+  console.log("Blow me over " + sDate)
+  //End Date - Time variable
+  const eDate = new Date(document.getElementById("endDate").value);
+  console.log("Blow me over again" + eDate)
+
+  let epoc = eDate.getTime() - sDate.getTime();
+  console.log("epoc is......."  + epoc)
+
+  //Calculate how many days left before departure
+  // First get number of seconds
+  
+  console.log("Seconds to go = " + epoc);
+  // Then calculate seconds into days
+  let daysToGo = epoc / (1000 * 3600 * 24);
+  console.log("Days to go =  " + daysToGo);  
 
   //End Date - Time variables
   const endDate = document.getElementById("endDate").value;
   console.log("Return date is " + endDate);
 
-  /*let body;
-  if (city != "") {
-      body = {
-      city: city,
-    };*/
+  // ###########################################
 
   //Check if all fields have been populated -
   if (city != "" && startDate != "" && endDate != "") {
@@ -74,7 +79,7 @@ export async function performAction(e) {
       newInputPIX(PIX_baseUrl, city).then(function (pixResult) {
           console.log("9");
           //console.log(pixResult);
-          const PIXUrl = pixResult.pageURL
+          const PIXUrl = pixResult.previewURL
           //console.log(PIXUrl);
           //});    
           
@@ -89,6 +94,7 @@ export async function performAction(e) {
             high: weather.high_temp,
             sunrise: weather.sunrise_ts,
             image: PIXUrl,
+            daysToGo: daysToGo,
           }).then(() =>{
             postUpdates()
           });
@@ -188,43 +194,19 @@ export const postData = async (Url = "", data = {}) => {
   console.log("Returning newData too ");
 };
 
-//GET DATA function
-/*export const getData = async (Url = "", data = {}) => {
-  console.log("ZZ");
-   console.log("Called getData");
-   const response = await fetch(Url, {
-    method: "GET",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    // Body data type must match "Content-Type" header
-    body: JSON.stringify(data),
-  });
-  console.log("getData ended going into try block");
-  try {
-    const newData = await response.json();
-    console.log("New data = " + newData);
-    return newData;
-  } catch (error) {
-    console.log("These is an error in postData function:", error);
-  }
-  console.log("Returning newData too ");
-};*/
-
 //CODE TO UPDATE UI
 const postUpdates = async () => {
   const entries = await fetch("/all");
   console.log("postUpdate line 215 called");
   try {
     const projectData = await entries.json();
-    document.getElementById("city").innerHTML = `City: ${projectData.city}`;
-    document.getElementById("mintemp").innerHTML = `Minimum Temperature: ${projectData.minTemp}`;
-    document.getElementById("maxtemp").innerHTML = `Maximum Temperature: ${projectData.maxTemp}`;
-    document.getElementById("currenttemp").innerHTML = `Current Temperature: ${projectData.temp}`;
-    document.getElementById("pix").innerHTML = `Image: ${projectData.image}`;
-    //document.getElementById("pix2").innerHTML = <img src=\${projectData.image}>;
-
+    document.getElementById("location").innerHTML = `City: ${projectData.city}`;
+    document.getElementById("mintemp").innerHTML = `Min Temp: ${projectData.minTemp}`;
+    document.getElementById("maxtemp").innerHTML = `Max Temp: ${projectData.maxTemp}`;
+    document.getElementById("currenttemp").innerHTML = `Current Temp: ${projectData.temp}`;
+    document.getElementById("daysToGo").innerHTML = `Days until departure: ${projectData.daysToGo}`;
+    //document.getElementById("image").innerHTML = `Image: ${projectData.image}`;
+    document.getElementById("pix2").innerHTML = `<img class="w3-card-circle" src="${projectData.image}">`;
 
   } catch (err) {
     console.log("Error posting data " + err);

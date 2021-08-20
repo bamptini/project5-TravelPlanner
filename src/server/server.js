@@ -64,8 +64,9 @@ async function postData (request, response) {
     endPoint["minTemp"] = data.low;
     endPoint["maxTemp"] = data.high;
     endPoint["temp"] = data.temperature;
-    endPoint["pix"] = data.image;
-
+    endPoint["daysToGo"] = data.daysToGo;
+    endPoint["image"] = data.image;
+    
 response.send(endPoint);
 
 

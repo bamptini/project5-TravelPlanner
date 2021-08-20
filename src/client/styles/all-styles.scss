@@ -20,6 +20,72 @@ body{
         justify-content: center;
     }
 
+    .w3-card-circle {
+        width: 190px;
+        height: 190px;
+        //border-radius: 90px;
+        padding: auto;
+        position: sticky;
+        z-index: 2;
+        border: 2px solid;
+            border-top-color: currentcolor;
+            border-right-color: currentcolor;
+            border-bottom-color: currentcolor;
+            border-left-color: currentcolor;
+        border-color: grey;
+    }
+
+    /* This is my grid setup */
+    .tripContainer{
+        display:grid;
+        grid-template-columns:7vw 20vw;
+        grid-template-rows: auto;
+        width: auto;
+        height: 240px;
+        grid-gap: 15px;
+        margin:auto;
+        grid-template-areas: 
+        "data img";
+        //border: 4px solid rgb(42, 102, 170);
+        //justify-content: center;
+    }
+
+    #nestedtripInfoContainer{
+        display:grid;
+        grid-template-columns: repeat(1, 1fr);
+        //grid-template-rows: 10%;
+        grid-template-areas: 
+        "info" "image";
+        grid-gap: 15px;
+       // border: 3px solid rgb(80, 31, 158);
+        justify-content: center;
+        height: 230px;
+        /*width: 90vw;*/
+    }
+
+    .informa{
+        grid-area: informa;    
+    }
+
+    .image{
+        grid-area: image;    
+    }
+    
+
+    #nestedtripImageContainer{
+        display:grid;
+        //grid-template-columns: repeat(auto-fit, minmax(600px, 2fr));
+        //@at-root: repeat(2, minmax(200px, auto));
+        grid-template-columns: auto;
+        grid-template-rows:auto;
+        grid-template-areas: 
+        "imgage";
+        grid-gap: 15px;
+        /*border: 5px solid rgb(80, 31, 158);*/
+        justify-content: center;
+        /*width: 90vw;*/
+    }
+
 .box{
     display:flex;
     flex-direction: row;
@@ -964,6 +1030,57 @@ body {
     padding: 10px
 }
 
+/*.card {
+	position: relative;
+	width: 40vw;
+    height: 500px;
+    font-family: Helvetica, sans-serif;
+	margin: 0 auto;
+	background: #333;
+	box-sizing: border-box;
+	text-align: center;
+	border: 1px;
+	border-radius: 10px;
+	background: #fff;
+	box-shadow: 3px 3px 7px rgba(5, 5, 5, 0.959);
+	overflow: hidden;
+    padding: 10px
+}
+
+.cardL {
+	position: relative;
+	width: 40vw;
+    height: 500px;
+    font-family: Helvetica, sans-serif;
+	margin: 0 auto;
+	background: #333;
+	box-sizing: border-box;
+	text-align: center;
+	border: 1px;
+	border-radius: 10px;
+	background: #fff;
+	box-shadow: 3px 3px 7px rgba(5, 5, 5, 0.959);
+	overflow: hidden;
+    padding: 10px
+}
+
+.cardR {
+	position: relative;
+	width: 40vw;
+    height: 500px;
+    font-family: Helvetica, sans-serif;
+	margin: 0 auto;
+	background: #333;
+	box-sizing: border-box;
+	text-align: center;
+	border: 1px;
+	border-radius: 10px;
+	background: #fff;
+	box-shadow: 3px 3px 7px rgba(5, 5, 5, 0.959);
+	overflow: hidden;
+    padding: 10px
+}*/
+
 .content .layer {
 	position: absolute;
 	/*top: calc(10% -60px);*/
@@ -1164,6 +1281,7 @@ input[type="text"], select, textarea {
 	box-shadow: inset 0px 0px 15px #FFE5E5;
 	-moz-box-shadow: inset 0px 0px 15px #FFE5E5;
 	-webkit-box-shadow: inset 0px 0px 15px #FFE5E5;
+    height: 270px;
 }
 .result-style-3 fieldset legend{
 	color: #21a8d1;
@@ -1224,14 +1342,6 @@ input[type="text"], select, textarea {
 	font-weight: bold;
 }
 
-     
-    
-
-
-    
-  
-
-  
-
-
-
+.fieldset h5 {
+    align-items: flex-start;
+}

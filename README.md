@@ -26,3 +26,7 @@ I am feeling: Cold
 
 ## Extras
 Basic test file is also in the project With some additional code to test API call using a static variable for the City.
+
+## Resources
+For data manipulation the following resource was used.
+https://www.geeksforgeeks.org/how-to-calculate-the-number-of-days-between-two-dates-in-javascript/

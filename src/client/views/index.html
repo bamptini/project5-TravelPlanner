@@ -44,7 +44,7 @@
         
         <div class="card">
           <!--CARD left-->          
-            <div class="card-left inner cardInnerLeft">
+            <div class="cardL card-left inner cardInnerLeft">
             <div><h2>Enter details</h2></div>
               <p>
             <figure>
@@ -80,7 +80,7 @@
             <!--div class="vl"></div-->
             <div class="card">              
               <!--CARD right-->
-            <div class="card-right inner cardInnerRight">
+            <div class="cardR card-right inner cardInnerRight">
               <div><h2>Results</h2></div>
               <p>
               <figure>
@@ -92,12 +92,17 @@
               <div class="result-style-3">
                 <form>
                 <fieldset><legend>Trip Info</legend>
-                <p id="city"></p><br>
-                <p id="mintemp"></p><br>
-                <p id="maxtemp"></p><br>
-                <p id="currenttemp"></p><br>
-                <p id="pix"></p> 
-                <p id="pix2"></p>              
+                <div class="tripContainer">
+                  <div id="nestedtripInfoContainer">
+                <h5 id="location" style="text-align: left; margin:0px;"></h5>
+                <h5 id="mintemp" style="text-align: left; margin:0px"></h5>
+                <h5 id="maxtemp" style="text-align: left; margin:0px"></h5>
+                <h5 id="currenttemp" style="text-align: left; margin:0px"></h5>
+                <h5 id="daysToGo" style="text-align: left; margin:0px"></h5>
+                </div>
+                  <div id="nestedtripImageContainer">
+                <h5 id="pix2" style="text-align: left"></h5></div>
+                <div>             
                 </fieldset>
                 </form>
                 </div>
