@@ -2,30 +2,34 @@
 
 ## Overview
 Project requires creation of an asynchronous web app.
-Connect to the Openweather API and retrieve the temperature for a specific location baxed on data entered into the UI.
+Connect to the Openweather API Geoname and PIXABAY APIs to collect weather details for a user entered location (City) the UI will diplay detials, MIN, MAX and Curent Temperature and also picture of the location and a countdown for how many days befofre departure.
 
-The input data also includes current date, and a text form to 'Feelings' the data is combined to be dynamically displayed in the UI. 
 
 ## Instructions
-Run project using the command node server.js in the terminal. This file needs to be run to start a local server.
+Run project using the commands:
+
+run nmp start - to Start a local server.
+run npm build prod - to build production instance with dist folder
+run npm build dev - to build dev environment
 
 If required modify the 'Server Setup' section in server.js file to change the port on which server will listen. Defined port needs to be an unused port on the local machine. If port already in use, the application will error. A new port number may be required. Use netstat to identify which ports are already in use.
 
-The application requires text entries in two fields. One in the 'Enter city here' text box and the other in the 'Howa re you feeling today' text box.
+The application requires text entries in one field. User enters a location into a text box. the user alos selects a start and end date.
 
-After text has been entered, press 'Generate' button to show results.
+After text and dates have been selected, press 'submit' button to show results.
 
-Expected results: Date, Temperature and the Feeling message.
+Expected results: Min Temp, Max Temp, Current Temp, image and Days to go.
 
 example:
 
-Date: 27.06.2021
-The temperature is currently: 18.38c in London
-I am feeling: Cold
 
+City: London
+Min Temp: 14.9
+Max Temp: 22.4
+Current Temp: 19.4
+Days until departure: 7
 
 ## Extras
-Basic test file is also in the project With some additional code to test API call using a static variable for the City.
 
 ## Resources
 For data manipulation the following resource was used.
