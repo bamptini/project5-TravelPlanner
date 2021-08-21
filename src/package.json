@@ -1,0 +1,47 @@
+{
+  "name": "project5",
+  "version": "1.0.0",
+  "description": "Travel Planner Project 5",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "curl": "^0.1.4",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^3.3.5"
+  },
+  "devDependencies": {
+    "babel-loader": "^8.2.2",
+    "body-parser": "^1.19.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.2.5",
+    "dotenv-webpack": "^7.0.3",
+    "file-loader": "^6.2.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^1.6.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.1",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack-dev-server": "^3.7.2",
+    "workbox-webpack-plugin": "^6.1.5"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "node src/server/server.js",
+    "build-prod": "webpack --config webpack.prod.js",
+    "build-dev": "webpack-dev-server  --config webpack.dev.js --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bamptini/project5-TravelPlanner.git"
+  },
+  "author": "James Bampton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bamptini/project5-TravelPlanner/issues"
+  },
+  "homepage": "https://github.com/bamptini/project5-TravelPlanner#readme"
+}
