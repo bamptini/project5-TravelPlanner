@@ -2,7 +2,7 @@ import { newInputGEO } from '../client/js/application';
 global.fetch = require("node-fetch");
 
 let GEO_baseUrl = "http://api.geonames.org/searchJSON?q=";
-const userName = "&username=" + process.env.GEO_API_USERNAME;
+const userName = "&username=bamptini";
 const city = "London";
 
 describe("API Tests", () => {
@@ -10,7 +10,7 @@ describe("API Tests", () => {
     
     const testResult = await newInputGEO(GEO_baseUrl, city, userName)
     
-        expect(testResult).toBeDefind();
+        expect(testResult).toBeDefined();
     });
 })
     
