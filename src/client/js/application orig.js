@@ -111,7 +111,7 @@ document.getElementById("message").innerHTML = `Please enter a City, Start and E
 //postUpdates()
 
 //GET data from GEONAMES WEB API using ASYNC function. Results will be for the City entered by user
-export const newInputGEO = async (GEO_baseUrl, city, userName) => {
+const newInputGEO = async (GEO_baseUrl, city, userName) => {
   console.log("2");
   //console.log("New Input", { GEO_baseUrl, city, userName });
   const response = await fetch(GEO_baseUrl + city + userName); // await until all data is received from API call, then try

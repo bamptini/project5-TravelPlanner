@@ -4,6 +4,7 @@ body{
     color: #444;
 }
 
+
     /* This is my grid setup */
     .container{
         display:grid;
@@ -38,7 +39,7 @@ body{
     /* This is my grid setup */
     .tripContainer{
         display:grid;
-        grid-template-columns:7vw 20vw;
+        //grid-template-columns:25vw 20vw;
         grid-template-rows: auto;
         width: auto;
         height: 240px;
@@ -50,6 +51,25 @@ body{
         //justify-content: center;
     }
 
+        /* This is my grid setup */
+        @media(max-width:900px){
+        .tripContainer{
+            display:grid;
+            //grid-template-columns: 100vw;
+            grid-template-rows: auto;
+            width: auto;
+            height: auto;
+            grid-gap: 15px;
+            margin:auto;
+            grid-template-areas: 
+            "data" 
+            "img";
+            //border: 4px solid rgb(42, 102, 170);
+            //justify-content: center;
+        }
+    }
+    
+
     #nestedtripInfoContainer{
         display:grid;
         grid-template-columns: repeat(1, 1fr);
@@ -59,8 +79,9 @@ body{
         grid-gap: 15px;
        // border: 3px solid rgb(80, 31, 158);
         justify-content: center;
-        height: 230px;
+       // height: 230px;
         /*width: 90vw;*/
+        font-size: 15px;
     }
 
     .informa{
@@ -92,6 +113,15 @@ body{
     align-items: center;
     /*border: 1px solid red;*/
     /*background: #F8FA9D;*/
+    width:100%;
+}
+
+.tripBox{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    //border: 1px solid red;
+    //background: #F8FA9D;
     width:100%;
 }
 
@@ -149,6 +179,8 @@ body{
     box-direction: row;
     grid-area:hd;
     justify-content:center;
+    padding: 10px;
+    margin: 15px
 }
 
 // .header img{
@@ -194,7 +226,7 @@ body{
     grid-gap: 15px;
     /*border: 5px solid rgb(80, 31, 158);*/
     justify-content: center;
-    /*width: 90vw;*/
+    width: 100vw;
 }
 
 #nestedFootGrid{
@@ -238,9 +270,15 @@ body{
     display:flex;
 }
 
+@media(min-width:900px){
+.card {
+    display:flex;
+    height:100vh;
+}}
+
 .card-left{
     display:flex;
-    width:45vw; 
+    width:100vw; 
     grid-area:card1;
     //height: auto;
     display: block;
@@ -248,7 +286,7 @@ body{
 
 .card-right {
     display:flex;
-    width:45vw;
+    width:100vw;
     grid-area:card2;
     //height: 62vh;
     display:block 
@@ -319,7 +357,7 @@ body{
 }
 
 .topnav{
-    grid-area: topnav;    
+    grid-area: topnav; 
 }
 
 .toptext{
@@ -383,7 +421,7 @@ body{
         /*width: 90vw;*/
 }}
 
-@media(min-width:1250px){
+/*@media(min-width:1250px){
     #nestedGrid{
         display:flex;
         flex-direction: row;
@@ -394,6 +432,24 @@ body{
         //grid-template-rows:80vh;
         grid-template-areas: 
         "card1 card2";
+        grid-gap: 15px;
+        //border: 5px solid rgb(39, 177, 26);
+        justify-content: center;
+        width: 100%;
+}}*/
+
+@media(max-width:900px){
+    #nestedGrid{
+        display:flex;
+        flex-direction: row;
+        display:grid;
+        grid-template-columns: 90vw;
+        grid-template-rows: repeat(1, 1fr);
+        //grid-template-columns: 50%;
+        //grid-template-rows:80vh;
+        grid-template-areas: 
+        "card1" 
+        "card2";
         grid-gap: 15px;
         //border: 5px solid rgb(39, 177, 26);
         justify-content: center;
@@ -757,7 +813,8 @@ body {
         background-color: #444;
         text-decoration: none;
         text-align: center;
-        width:120px;
+        width: 25vw;
+        //width:120px;
         margin: 2px;
         color: rgb(250, 246, 246);
         opacity: 0.6;
@@ -812,9 +869,9 @@ body {
         font-size: 25px;
     }
     
-    #content{
+    /*#content{
     
-    }
+    }*/
     
     .headline {
         font-size: 55px;;
@@ -843,7 +900,7 @@ body {
     }
     
     button{
-        width: 300px;
+        width: 200px;
         height: 50px;
         background: #cbd1dd;
         color: #31312e;
@@ -1015,10 +1072,10 @@ body {
 
 .content .card {
 	position: relative;
-	width: 40vw;
-    height: 500px;
+	//width: 40vw;
+    height: 90vh;
     font-family: Helvetica, sans-serif;
-	margin: 0 auto;
+	margin: 15px;
 	background: #333;
 	box-sizing: border-box;
 	text-align: center;
@@ -1111,6 +1168,25 @@ body {
         "foot";
         border: 2px solid rgb(47, 223, 61);
                         }
+}
+
+@media(min-width:900px){
+.content .card {
+	position: relative;
+	//width: 40vw;
+    height: 80vh;
+    font-family: Helvetica, sans-serif;
+	margin: 15px;
+	background: #333;
+	box-sizing: border-box;
+	text-align: center;
+	border: 1px;
+	border-radius: 10px;
+	background: #fff;
+	box-shadow: 3px 3px 7px rgba(5, 5, 5, 0.959);
+	overflow: hidden;
+    padding: 10px
+}
 }
 
 .w3-circle2{
@@ -1281,7 +1357,7 @@ input[type="text"], select, textarea {
 	box-shadow: inset 0px 0px 15px #FFE5E5;
 	-moz-box-shadow: inset 0px 0px 15px #FFE5E5;
 	-webkit-box-shadow: inset 0px 0px 15px #FFE5E5;
-    height: 270px;
+    //height: 270px;
 }
 .result-style-3 fieldset legend{
 	color: #21a8d1;
